@@ -6,11 +6,11 @@ const coverScreen = document.querySelector ( ".cover-screen" );
 const result = document.getElementById( "result" );
 
 let currentElement = "";
-let movesCount,
-    imagesArr = [];
-const isTouchDevice = ( ) => {
-    try{
+let movesCount = 0;
+let imagesArr = [];
 
+const isTouchDevice = () => {
+    try{
     // We try to create TouchEvent ( it would
     //desktops ad throw error )
     document.createEvent("TouchEvent");
@@ -22,28 +22,29 @@ const isTouchDevice = ( ) => {
 };
 
 //random number for image
-const randomNumber = () => Math.floor( Math.random() * 8) + 1;
+const randomNumber = () => Math.floor(Math.random() * 8) + 1;
 
 
 
-// Get row and column value from data - position
+// Get row and column value from data-position
 const getCoords = ( element ) => {
-    const [ row , col ] = element.getAttribute
-    ( "data-position" ).split( "_" );
-    return [ parseInt( row ), parseInt( col )];
+    const [row, col] = element
+    .getAttribute("data-position")
+    .split( "_" );
+    return [parseInt(row), parseInt(col)];
 }; 
 
 // row1 , coll are image co-ordinates while row2 amd
 // col2 are blank image co-ordinates
-const checkAdjacent = ( row1 , row2 , col1 , col2 ) =>{ 
-        if ( row1 == row2 ) {
+const checkAdjacent = ( row1, row2, col1, col2 ) =>{ 
+        if (row1 == row2) {
             // left / right
             if ( col2 == col1 - 1 || col2 == col1 + 1 ) {
                 return true ;
             }
         } else if ( col1 == col2 ) {
             // up / down
-            if ( row2 == row1 - 1 || row2 == row1 +1 ){
+            if ( row2 == row1 -1 || row2 == row1 +1 ){
                 return true ;
             }
         }
@@ -52,9 +53,9 @@ const checkAdjacent = ( row1 , row2 , col1 , col2 ) =>{
 
     // Fill array with random value for images
 const randomImages = ( ) => {
-    while ( imagesArr.length < 8 ) {
+    while( imagesArr.length < 8 ) {
         let randomVal = randomNumber();
-        if ( !imagesArr.includes(randomVal) ) {
+        if (!imagesArr.includes(randomVal)) {
             imagesArr.push(randomVal);
         }
     } 
@@ -64,40 +65,38 @@ const randomImages = ( ) => {
 // Generate Grid
 const gridGenerator = () => {
     let count = 0 ;
-    for ( let i = 0 ; i < 3 ; i ++ ) {
-        for ( let j = 0 ; j < 3 ; j ++ ) {
-        let div = document.createElement ( "div" );
-        div.setAttribute ( "data-position", `${i} _${ i }`);
-        div.addEventListener ( "click", selectImage );
-        div.classList.add( "image-container" );
-        div.innerHTML = `<img src="image_part_00${imagesArr[count]
-        }.png" class="image ${imagesArr[count] == 9 ? "target" : ""
-        }"data index="${imagesArr[count]}"/> `;
-        count += 1 ;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+        let div = document.createElement("div");
+        div.setAttribute("data-position", `${i}_${j}`);
+        div.addEventListener ("click", selectImage);
+        div.classList.add("image-container");
+        div.innerHTML = `<img src="image_part_00${imagesArr[count]}.png" class="image ${imagesArr[count]==9 ? "target": ""}" data-index="${imagesArr[count]}"/> `;
+        count += 1;
         container.appendChild(div);
         }
     }
 };
 
 // Click the image
-const selectImage =( e ) => {e.preventDefault( );
+const selectImage =(e) => {e.preventDefault();
 
 // Set currentElement
 currentElement = e.target;
 
 // target ( blank image ) 
 let targetElement = document.querySelector( ".target" );
-let currentElement = currentElement.parentElement;
+let currentParent = currentElement.parentElement;
 let targetParent =  targetElement.parentElement;
 
 // get row and col values for both elements
-const [ row1, col1 ] = getCoords( currentParent );
-const [ row2, col2 ] = getCoords( targetParent );
+const [row1, col1] = getCoords(currentParent);
+const [row2, col2] = getCoords(targetParent);
             
 if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
     // Swap
-    currentElement.remove( );
-    targetElement.remove( );
+    currentElement.remove();
+    targetElement.remove();
 
     // Get image index ( to be used later for
     //manipulating array )
@@ -141,19 +140,21 @@ if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
     movesCount += 1;
     moves.innerText = `Moves: ${movesCount}`;
     }
+
 }
 
 // Start button click should display the container
-startButton.addEventListener ("click", ( ) => {
+startButton.addEventListener("click", () => {
     container.classList.remove("hide");
-    coverScreen.classList.add( "hide" );
-    container.innerHTML ="" ;
-    imagesArr = [] ;
-    randomImages() ;
-    gridGenerator() ;
-    movesCount = 0 ;
-    moves.innerText = `Moves: ${movesCount}`;
+    coverScreen.classList.add("hide");
+    container.innerHTML ="";
+    imagesArr = [];
+    randomImages();
+    gridGenerator();
+    // movesCount = 0;
+    // moves.innerText = "Moves: "+movesCount;
 } ) ;
+
 
 // Display start screen first
 window.onload = () => {
