@@ -1,11 +1,11 @@
 //initial reference
-const moves = document.getElementById( "moves" ) ;
-const container = document.querySelector ( ".container" ) ;
-const startButton = document.getElementById( "start-button" ) ;
-const coverScreen = document.querySelector ( ".cover-screen" ) ;
-const result = document.getElementById( "result" ) ;
+const moves = document.getElementById( "moves" );
+const container = document.querySelector ( ".container" );
+const startButton = document.getElementById( "start-button" );
+const coverScreen = document.querySelector ( ".cover-screen" );
+const result = document.getElementById( "result" );
 
-let currentElement = "" ;
+let currentElement = "";
 let movesCount,
     imagesArr = [];
 const isTouchDevice = ( ) => {
@@ -33,7 +33,70 @@ const getCoords = ( element ) => {
     return [ parseInt( row ), parseInt( col )];
 }; 
 
-// rowl , coll are image co-ordinates while row2 amd
+// row1 , coll are image co-ordinates while row2 amd
 // col2 are blank image co-ordinates
-const checkAdjacent = ( row1 , row2 , col1 , col2 ) =>
-    { }; 
+const checkAdjacent = ( row1 , row2 , col1 , col2 ) =>{ 
+        if ( row1 == row2 ) {
+            // left / right
+            if ( col2 == col1 - 1 || col2 == col1 + 1 ) {
+                return true ;
+            }
+        } else if ( col1 == col2 ) {
+            // up / down
+            if ( row2 == row1 - 1 || row2 == row1 +1 ){
+                return true ;
+            }
+        }
+        return false ;
+    }; 
+
+    // Fill array with random value for images
+const randomImages = ( ) => {
+    while ( imagesArr.length < 8 ) {
+        let randomVal = randomNumber();
+        if ( !imagesArr.includes(randomVal) ) {
+            imagesArr.push(randomVal);
+        }
+    } 
+    imagesArr.push(9);
+};
+
+// Generate Grid
+const gridGenerator = () => {
+    let count = 0 ;
+    for ( let i = 0 ; i < 3 ; i ++ ) {
+        for ( let j = 0 ; j < 3 ; j ++ ) {
+        let div = document.createElement ( "div" );
+        div.setAttribute ( "data-position", `${i} _${ i }`);
+        div.addEventListener ( "click", selectImage );
+        div.classList.add( "image-container" );
+        div.innerHTML = `<img src="image_part_00${imagesArr[count]
+        }.png" class="image ${imagesArr[count] == 9 ? "target" : ""
+        }"data index="${imagesArr[count]}"/> `;
+        count += 1 ;
+        container.appendChild(div);
+        }
+    }
+};
+
+//click  the image
+
+const selectImage= (e) =>{};
+
+// Start button click should display the container
+startButton.addEventListener ( "click", ( ) => {
+    container.classList.remove ( "hide" );
+    coverScreen.classList.add ( "hide" );
+    container.innerHTML = "" ;
+    imagesArr = [] ;
+    randomImages() ;
+    gridGenerator() ;
+    movesCount = 0 ;
+    moves.innerText = `Moves : ${movesCount}`;
+} ) ;
+
+// Display start screen first
+window.onload = () => {
+    coverScreen.classList.remove ( "hide" );
+    container.classList.add("hide");
+};
