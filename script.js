@@ -13,7 +13,7 @@ const isTouchDevice = ( ) => {
 
     // We try to create TouchEvent ( it would
     //desktops ad throw error )
-    document.createEvent( "TouchEvent" );
+    document.createEvent("TouchEvent");
     return true;
 }catch(e){
     return false
@@ -79,24 +79,84 @@ const gridGenerator = () => {
     }
 };
 
-//click  the image
+// Click the image
+const selectImage =( e ) => {e.preventDefault( );
 
-const selectImage= (e) =>{};
+// Set currentElement
+currentElement = e.target;
+
+// target ( blank image ) 
+let targetElement = document.querySelector( ".target" );
+let currentElement = currentElement.parentElement;
+let targetParent =  targetElement.parentElement;
+
+// get row and col values for both elements
+const [ row1, col1 ] = getCoords( currentParent );
+const [ row2, col2 ] = getCoords( targetParent );
+            
+if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
+    // Swap
+    currentElement.remove( );
+    targetElement.remove( );
+
+    // Get image index ( to be used later for
+    //manipulating array )
+    let currentIndex = parseInt( currentElement.getAttribute(
+        "data-index" ) ); 
+    
+    let targetIndex = parseInt ( targetElement .getAttribute(
+        "data-index" ) );
+
+    // Swap Index               
+    currentElement.setAttribute( "data-index",
+        targetIndex );
+    targetElement.setAttribute ( "data-index",
+        currentIndex );
+
+    // Swap Images
+    currentParent.appendChild(targetElement);
+    targetParent.appendChild(currentElement);
+
+    // Array swaps
+    let currentArrIndex = imagesArr.indexOf(currentIndex);
+    let targetArrIndex = imagesArr.indexOf(targetIndex);
+
+    [ imagesArr[currentArrIndex], imagesArr[targetArrIndex] ] = [
+        imagesArr[targetArrIndex],
+        imagesArr[currentArrIndex],
+    ] ;
+
+    // Win condition
+    if ( imagesArr.join ( "" ) == "123456789" ) {
+        setTimeout( () => {
+          //When games ends display the cover screen again
+            coverScreen.classList.remove( "hide" );
+            container.classList.add("hide");
+            result.innerText = `Total Moves: ${movesCount}`;
+            startButton.innerText = "RestartGame";
+        }, 1000 );
+    } 
+
+    // Increment a display move
+    movesCount += 1;
+    moves.innerText = `Moves: ${movesCount}`;
+    }
+}
 
 // Start button click should display the container
-startButton.addEventListener ( "click", ( ) => {
-    container.classList.remove ( "hide" );
-    coverScreen.classList.add ( "hide" );
-    container.innerHTML = "" ;
+startButton.addEventListener ("click", ( ) => {
+    container.classList.remove("hide");
+    coverScreen.classList.add( "hide" );
+    container.innerHTML ="" ;
     imagesArr = [] ;
     randomImages() ;
     gridGenerator() ;
     movesCount = 0 ;
-    moves.innerText = `Moves : ${movesCount}`;
+    moves.innerText = `Moves: ${movesCount}`;
 } ) ;
 
 // Display start screen first
 window.onload = () => {
-    coverScreen.classList.remove ( "hide" );
+    coverScreen.classList.remove("hide");
     container.classList.add("hide");
 };
