@@ -1,10 +1,11 @@
-
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    background-color: #edb506;
 }
+
 img {
     max-width: 100%;
 }
@@ -16,43 +17,91 @@ img {
     margin: 0 auto;
     margin-top: 5%;
 }
+
 .container {
     display: grid;
     width:25em;
     height:25em;
     grid-template-columns : repeat( 3, 1fr );
-    grid-auto-rows : 8em;
-
+    grid-auto-rows : 11.5em;
 }
 
 .original-image {
     width:25em;
     height:25em;
+    margin-left: 1em;
+}
+
+.image-container {
+    border: 1px solid #ffffff;
 }
 
 .cover-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #edb506;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-button {
+    font-size: 1.2em;
+    padding: 0.8em 2em;
+    border: none;
+    border-radius: 3em;
+    cursor: pointer;
+    background:#f4e9d7 ;
 }
 
 #moves {
     position: relative;
     margin: 1em ;
+    color: white;
     text-align: right;
+    border-radius: 3em;
+    padding: 0.8em 1em;
+    background-color: gray;
+
 }
+
 .hide {
     display:none;
 }
 
-@media only screen and ( max-width : 768px ) {
+
+
+@media only screen and ( max-width : 1010px ) {
+    .container{
+        grid-auto-rows: 11em;
+    }
+}
+
+@media only screen and ( max-width : 943px ) {
+    .container{
+        grid-auto-rows: 10em;
+    }
+}
+
+@media only screen and ( max-width : 832px ) {
     .slider-game {
     flex-direction: column;
+    
     }
     .container {
         width: 20em;
         height: 20em;
-        grid-auto-rows: 6em;
+        grid-auto-rows: 9.2em;
+        
     }
     .original-image {
         width: 20em;
-        height: 20em; 
+        height: 20em;
+        margin-left: 0px;
+        margin-top: 200px; 
     }
 }
