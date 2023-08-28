@@ -6,11 +6,11 @@ const coverScreen = document.querySelector ( ".cover-screen" );
 const result = document.getElementById( "result" );
 
 let currentElement = "";
-let movesCount,
-    imagesArr = [];
-const isTouchDevice = ( ) => {
-    try{
+let movesCount = 0;
+let imagesArr = [];
 
+const isTouchDevice = () => {
+    try{
     // We try to create TouchEvent ( it would
     //desktops ad throw error )
     document.createEvent("TouchEvent");
@@ -22,15 +22,16 @@ const isTouchDevice = ( ) => {
 };
 
 //random number for image
-const randomNumber = () => Math.floor( Math.random() * 8) + 1;
+const randomNumber = () => Math.floor(Math.random() * 8) + 1;
 
 
 
-// Get row and column value from data - position
+// Get row and column value from data-position
 const getCoords = ( element ) => {
-    const [ row , col ] = element.getAttribute
-    ( "data-position" ).split( "_" );
-    return [ parseInt( row ), parseInt( col )];
+    const [row, col] = element
+    .getAttribute("data-position")
+    .split( "_" );
+    return [parseInt(row), parseInt(col)];
 }; 
 
 // row1 , coll are image co-ordinates while row2 amd
@@ -64,6 +65,7 @@ const checkAdjacent = (row1, row2, col1, col2) => {
 // Generate Grid
 const gridGenerator = () => {
     let count = 0 ;
+
     for ( let i = 0 ; i < 3 ; i ++ ) {
         for ( let j = 0 ; j < 3 ; j ++ ) {
         let div = document.createElement ( "div" );
@@ -80,7 +82,7 @@ const gridGenerator = () => {
 };
 
 // Click the image
-const selectImage =( e ) => {e.preventDefault( );
+const selectImage =(e) => {e.preventDefault();
 
 // Set currentElement
 currentElement = e.target;
@@ -96,8 +98,8 @@ const [row2, col2] = getCoords(targetParent);
             
 if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
     // Swap
-    currentElement.remove( );
-    targetElement.remove( );
+    currentElement.remove();
+    targetElement.remove();
 
     // Get image index ( to be used later for
     //manipulating array )
@@ -141,11 +143,13 @@ if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
     movesCount += 1;
     moves.innerText = `Movimientos: ${movesCount}`;
     }
+
 }
 
 // Start button click should display the container
-startButton.addEventListener ("click", ( ) => {
+startButton.addEventListener("click", () => {
     container.classList.remove("hide");
+
     coverScreen.classList.add( "hide" );
     container.innerHTML ="" ;
     imagesArr = [] ;
@@ -153,7 +157,9 @@ startButton.addEventListener ("click", ( ) => {
     gridGenerator() ;
     movesCount = 0 ;
     moves.innerText = `Movimientos: ${movesCount}`;
+
 } ) ;
+
 
 // Display start screen first
 window.onload = () => {

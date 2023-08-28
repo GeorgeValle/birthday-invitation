@@ -20,6 +20,7 @@ img {
 
 .container {
     display: grid;
+
     width:25em;
     height:25em;
     grid-template-columns : repeat( 3, 1fr );
@@ -29,6 +30,7 @@ img {
 .original-image {
     width:25em;
     height:25em;
+
     margin-left: 1em;
 }
 
@@ -37,6 +39,7 @@ img {
 }
 
 .cover-screen {
+
     position: absolute;
     top: 0;
     left: 0;
@@ -58,8 +61,16 @@ img {
     background:#f4e9d7 ;
 }
 
+#start-button {
+    font-size: 1.2em;
+    padding: 0.8em 2em;
+    border: none;
+    border-radius: 3em;
+    cursor: pointer;
+}
 #moves {
     position: relative;
+
     margin: 1em ;
     color: white;
     text-align: right;
@@ -72,8 +83,6 @@ img {
 .hide {
     display:none;
 }
-
-
 
 @media only screen and ( max-width : 1010px ) {
     .container{
@@ -90,15 +99,17 @@ img {
 @media only screen and ( max-width : 832px ) {
     .slider-game {
     flex-direction: column;
-    
     }
     .container {
         width: 20em;
         height: 20em;
+
         grid-auto-rows: 9.2em;
         
     }
     .original-image {
+        margin-top: 140px;
+        margin-left: 0px;
         width: 20em;
         height: 20em;
         margin-left: 0px;
