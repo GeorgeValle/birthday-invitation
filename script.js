@@ -36,43 +36,46 @@ const getCoords = ( element ) => {
 
 // row1 , coll are image co-ordinates while row2 amd
 // col2 are blank image co-ordinates
-const checkAdjacent = ( row1, row2, col1, col2 ) =>{ 
-        if (row1 == row2) {
-            // left / right
-            if ( col2 == col1 - 1 || col2 == col1 + 1 ) {
-                return true ;
-            }
-        } else if ( col1 == col2 ) {
-            // up / down
-            if ( row2 == row1 -1 || row2 == row1 +1 ){
-                return true ;
-            }
+const checkAdjacent = (row1, row2, col1, col2) => {
+    if (row1 == row2) {
+      //left/right
+        if (col2 == col1 - 1 || col2 == col1 + 1) {
+        return true;
         }
-        return false ;
-    }; 
+    } else if (col1 == col2) {
+      //up/down
+        if (row2 == row1 - 1 || row2 == row1 + 1) {
+        return true;
+        }
+    }
+    return false;
+};
 
     // Fill array with random value for images
-const randomImages = ( ) => {
-    while( imagesArr.length < 8 ) {
-        let randomVal = randomNumber();
-        if (!imagesArr.includes(randomVal)) {
+    const randomImages = () => {
+        while (imagesArr.length < 8) {
+            let randomVal = randomNumber();
+            if (!imagesArr.includes(randomVal)) {
             imagesArr.push(randomVal);
+            }
         }
-    } 
-    imagesArr.push(9);
-};
+        imagesArr.push(9);
+        };
 
 // Generate Grid
 const gridGenerator = () => {
     let count = 0 ;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-        let div = document.createElement("div");
-        div.setAttribute("data-position", `${i}_${j}`);
-        div.addEventListener ("click", selectImage);
-        div.classList.add("image-container");
-        div.innerHTML = `<img src="image_part_00${imagesArr[count]}.png" class="image ${imagesArr[count]==9 ? "target": ""}" data-index="${imagesArr[count]}"/> `;
-        count += 1;
+
+    for ( let i = 0 ; i < 3 ; i ++ ) {
+        for ( let j = 0 ; j < 3 ; j ++ ) {
+        let div = document.createElement ( "div" );
+        div.setAttribute ( "data-position", `${i} _${ j }`);
+        div.addEventListener ( "click", selectImage );
+        div.classList.add( "image-container" );
+        div.innerHTML = `<img src="image_part_00${imagesArr[count]
+        }.png" class="image ${imagesArr[count] == 9 ? "target" : ""
+        }"data-index="${imagesArr[count]}"/> `;
+        count += 1 ;
         container.appendChild(div);
         }
     }
@@ -126,19 +129,19 @@ if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
     ] ;
 
     // Win condition
-    if ( imagesArr.join ( "" ) == "123456789" ) {
-        setTimeout( () => {
-          //When games ends display the cover screen again
-            coverScreen.classList.remove( "hide" );
+    if (imagesArr.join("") == "123456789") {
+        setTimeout(() => {
+        //When games ends display the cover screen again
+            coverScreen.classList.remove("hide");
             container.classList.add("hide");
-            result.innerText = `Total Moves: ${movesCount}`;
-            startButton.innerText = "RestartGame";
-        }, 1000 );
-    } 
+            result.innerText = `Total de Movimientos: ${movesCount}`;
+            startButton.innerText = "Reiniciar Juego";
+        }, 1000);
+    }
 
     // Increment a display move
     movesCount += 1;
-    moves.innerText = `Moves: ${movesCount}`;
+    moves.innerText = `Movimientos: ${movesCount}`;
     }
 
 }
@@ -146,13 +149,15 @@ if ( checkAdjacent ( row1, row2, col1, col2 ) ) {
 // Start button click should display the container
 startButton.addEventListener("click", () => {
     container.classList.remove("hide");
-    coverScreen.classList.add("hide");
-    container.innerHTML ="";
-    imagesArr = [];
-    randomImages();
-    gridGenerator();
-    // movesCount = 0;
-    // moves.innerText = "Moves: "+movesCount;
+
+    coverScreen.classList.add( "hide" );
+    container.innerHTML ="" ;
+    imagesArr = [] ;
+    randomImages() ;
+    gridGenerator() ;
+    movesCount = 0 ;
+    moves.innerText = `Movimientos: ${movesCount}`;
+
 } ) ;
 
 
