@@ -49,7 +49,25 @@ img {
     align-items: center;
 }
 
-#start-button {
+#start-button, #button-back {
+    font-size: 1.2em;
+    padding: 0.8em 2em;
+    border: none;
+    border-radius: 3em;
+    cursor: pointer;
+    background:#f4e9d7 ;
+}
+
+.anchor {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+    background-color: transparent;
+    /* color: #0000; */
+    font-size: 1.2em;
+}
+
+#button-back{
     font-size: 1.2em;
     padding: 0.8em 2em;
     border: none;
@@ -65,7 +83,7 @@ img {
     text-align: right;
     border-radius: 3em;
     padding: 0.8em 1em;
-    background-color: gray;
+    /* background-color: gray; */
 
 }
 

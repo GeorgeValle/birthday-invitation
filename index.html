@@ -3,28 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation July</title>
-    <!-- google fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-        rel="stylesheet"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <title>Invitación July</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300;400&family=Lobster&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="style-home.css" type="text/css"/>
+    
 </head>
 <body>
-    <div class="cover-screen">
-        <p id="result"></p>
-        <button id="start-button">Iniciar Juego</button>
-    </div>
-    <div id="moves"></div>
-    <div class="slider-game">
-        <div class="container"></div>
-        <div class="original-image">
-            <img src="original_image.png" alt="image original"/>
+    <header>
+        <div class="main-title glitch">
+            <h1>Cumple de July</h1>
         </div>
-    </div>
-    <!-- scripts -->
-    <script src="script.js"></script>
+    </header>
+    <main>
+        <div class="phrase">
+            <img src="assets/chase.webp" class="images-characters" alt="chase"/>
+            <div class="bubble">
+                <p class="paragraph"> Te invito a mi fiesta el sábado 9 de septiembre</p>
+            </div>
+        </div>
+        <div class="phrase">
+            <img src="assets/marshall.webp" class="images-characters" alt="marshall"/>
+            <div class="bubble">
+                <p class="paragraph"> a las 16:00hs</p>
+            </div>
+        </div>
+        <div class="phrase">
+            <img src="assets/rubble.webp" class="images-characters" alt="rubble"/>
+            <div class="bubble">
+                <p class="paragraph"> en el salón de barrio Cooperativa Los Andes</p>
+            </div>
+        </div>
+        <div class="map">
+            <iframe
+                class="mapa_iframe1 mx-auto"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.3450555147924!2d-64.12738262522997!3d-31.44383884227644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432bd488dfa20df%3A0xb5ffe4b33d2d8d78!2sComisi%C3%B3n%20de%20vecinos%20Los%20Andes%20El%20Renuevo!5e0!3m2!1ses!2sar!4v1693373964214!5m2!1ses!2sar"
+                width="300"
+                height="400"
+                style="border: 2"
+                allowfullscreen="[ + ]"
+                loading="lazy"
+                >
+                </iframe>
+        </div>
+        <div class="phrase">
+            <img src="assets/rocky.webp" class="images-characters" alt="rocky"/>
+            <div class="bubble">
+                <p class="paragraph"> ¡Confirmá tu presencia en el siguiente boton!</p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button id="button-afirmative" class="btn_stylus" type="button"><a href="
+                https://wa.me/+5493517462809?text=confirmo%20asistencia
+                " target="_blank" class="anchor" > Confirmar Asistencia </a></button>
+        </div>
+        <div class="phrase">
+            <img src="assets/skye.webp" class="images-characters" alt="skye"/>
+            <div class="bubble">
+                <p class="paragraph"> ¡Te dejamos un juego para que te entretengas!</p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button id="button-afirmative" class="btn_stylus" type="button"><a href="page.html" target="_blank" class="anchor">Juega</a></button>
+        </div>
+        <div class="phrase">
+            <img src="assets/Ryder.webp" class="images-characters" alt="Ryder"/>
+            <div class="bubble">
+                <p class="paragraph"> ¡Te esperamos!</p>
+            </div>
+        </div>
+
+            
+        
+        
+    </main>
+    <audio autoplay loop>
+        <source src="./assets/PAWPatrol-theme-song.mp3" type="audio/mpeg">
+    </audio>
+    <!-- <embed src="assets/PAWPatrol-theme-song.mp3" hidden="true" autoplay="true"> -->
+    <!-- <bgsound src="./assets/PAWPatrol-theme-song.mp3" loop="infinite" volume="10" ></bgsound> -->
 </body>
 </html>

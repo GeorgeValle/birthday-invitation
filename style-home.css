@@ -1,0 +1,126 @@
+*{
+    margin:0;
+    background-color: lightgray;
+    box-sizing: border-box;
+}
+
+header{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-title{
+    letter-spacing: calc((80px / 1000) * -5);
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.06;
+    font-family: 'Lobster', cursive;
+    color: #34485C;
+    padding: 0;
+    margin-bottom:20px;
+    margin-left: 20px;
+    margin-top:20px;
+    text-shadow: 5px 5px #558abb;
+
+}
+.phrase{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:10px;
+}
+.paragraph{
+    font-size: 1.2rem;
+    font-family: 'Lobster', cursive;
+    font-weight: 300;
+    color: #ffff;
+    background-color : #156e7e;
+}
+.images-characters{
+    max-width: 80px;
+}
+
+.map{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+#button-afirmative{
+    border-radius: 40px;
+    padding: 20px;
+    background-color:rgb(98, 189, 158);
+    color: #ffffff
+}
+
+.anchor{
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+    background-color: transparent;
+    color:#ffffff;
+    font-size: large;
+}
+.bubble{
+    position: relative ;
+    background-color : #156e7e ;
+    padding: 20px ;
+    color: #222 ;
+    border-radius : 6px ;
+    margin-left : 20px ;
+}
+
+.bubble:after {
+    content: "" ;
+    display: block ;
+    position: absolute ;
+    width: 0 ;
+    height: 0 ;
+    top: 15px ;
+    margin-left : -35px ;
+    border-top: 8px solid transparent ;
+    border-bottom: 8px solid transparent ;
+    border-right: 15px solid #000 ;
+
+}
+
+
+.glitch {
+    position: relative;
+    display: inline-block;
+    animation: glitch 1s infinite;
+}
+    @keyframes glitch {
+    0% {
+        transform: translate( 0 );
+    }
+    25% {
+        transform: translate( -5px , 5px );
+    }
+    50% {
+        transform: translate( 5px , -5px );
+    }
+    75% {
+        transform: translate( -5px , 5px );
+    }
+    100% {
+        transform: translate( 0 );
+    }
+}
+
+@media only screen and ( max-width : 1010px ) {
+    .images-characters{
+        max-width: 60px;
+    }
+}
