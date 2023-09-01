@@ -5,9 +5,7 @@
 }
 
 header{
-    /* background: linear-gradient(90deg, rgba(55,54,54,0.9794292717086834) 5%, rgba(233,50,20,1) 15%, rgba(203,63,26,1) 22%); */
-    
-    background-color: red;
+    background: linear-gradient(90deg, rgba(55,54,54,0.9794292717086834) 5%, rgba(233,50,20,1) 15%, rgba(203,63,26,1) 22%);
     display:flex;
     align-items: center;
     justify-content: center;
