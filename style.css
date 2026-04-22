@@ -1,43 +1,91 @@
-*{
+/* Reset default spacing and keep sizing predictable */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+}
+
+/* Keep the page background on the body instead of every element */
+body {
     background-color: #edb506;
 }
 
+/* Make images behave like block elements and avoid inline gaps */
 img {
+    display: block;
     max-width: 100%;
 }
 
+/* Layout for puzzle area + reference image */
 .slider-game {
-    width:80%;
+    width: min(90%, 70rem);
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    margin-top: 5%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 5% auto 0;
 }
 
+/* 
+   The puzzle pieces are portrait-oriented, not square.
+   3 pieces across = 900px
+   3 pieces down   = 1254px
+   So the full board ratio is 900 / 1254.
+*/
+.container,
+.original-image {
+    width: 25em;
+    aspect-ratio: 900 / 1254;
+    flex-shrink: 0;
+}
+
+/* Build a true 3x3 grid with equal columns and equal rows */
 .container {
     display: grid;
-    width:25em;
-    height:25em;
-    grid-template-columns : repeat( 3, 1fr );
-    grid-auto-rows : 11.5em;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
-.original-image {
-    width:25em;
-    height:25em;
-    margin-left: 1em;
-}
-
+/* 
+   Keep each tile clipped inside its own cell.
+   The white border is only visual separation.
+*/
 .image-container {
     border: 1px solid #ffffff;
+    overflow: hidden;
 }
 
+/* Force each puzzle piece to fully fill its grid cell */
+.image-container .image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+   Style for the reference image area.
+   This works well if .original-image is a div with background-image.
+*/
+.original-image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* 
+   This also supports the case where .original-image contains an <img>.
+   If your reference is an actual img tag, it will scale correctly too.
+*/
+.original-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Full-screen start / finish overlay */
 .cover-screen {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: #edb506;
@@ -47,79 +95,67 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
-#start-button, #button-back {
+/* Shared button styles */
+#start-button,
+#button-back {
     font-size: 1.2em;
     padding: 0.8em 2em;
     border: none;
     border-radius: 3em;
     cursor: pointer;
-    background:#f4e9d7 ;
+    background: #f4e9d7;
 }
 
+/* Link appearance inside buttons */
 .anchor {
     outline: none;
     text-decoration: none;
     padding: 2px 1px 0;
     background-color: transparent;
-    /* color: #0000; */
     font-size: 1.2em;
+    color: inherit;
 }
 
-#button-back{
-    font-size: 1.2em;
-    padding: 0.8em 2em;
-    border: none;
-    border-radius: 3em;
-    cursor: pointer;
-    background:#f4e9d7 ;
-}
-
+/* Movement counter */
 #moves {
     position: relative;
-    margin: 1em ;
+    margin: 1em;
     color: white;
     text-align: right;
     border-radius: 3em;
     padding: 0.8em 1em;
-    /* background-color: gray; */
-
+    background-color: transparent;
 }
 
+/* Utility class to hide elements */
 .hide {
-    display:none;
+    display: none;
 }
 
-
-
-@media only screen and ( max-width : 1010px ) {
-    .container{
-        grid-auto-rows: 11em;
+/* Slight size adjustment for medium screens */
+@media only screen and (max-width: 1010px) {
+    .container,
+    .original-image {
+        width: 23em;
     }
 }
 
-@media only screen and ( max-width : 943px ) {
-    .container{
-        grid-auto-rows: 10em;
-    }
-}
-
-@media only screen and ( max-width : 832px ) {
+/* Stack puzzle and reference image vertically on smaller screens */
+@media only screen and (max-width: 832px) {
     .slider-game {
-    flex-direction: column;
-    
+        flex-direction: column;
+        align-items: center;
     }
-    .container {
-        width: 20em;
-        height: 20em;
-        grid-auto-rows: 9.2em;
-        
-    }
+
+    .container,
     .original-image {
         width: 20em;
-        height: 20em;
-        margin-left: 0px;
-        margin-top: 200px; 
+    }
+
+    .original-image {
+        margin-top: 1rem;
     }
 }
